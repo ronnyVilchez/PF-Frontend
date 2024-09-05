@@ -49,7 +49,7 @@ export const Report =  () => {
                 </label>
                 <label className=' p-2 flex flex-col py-4 items-start' > Estado: <input required className='px-4 outline-none rounded-xl bg-orange-100 w-full h-[3rem]  text-black font-normal uppercase' type="text" name='status' value={'pendiente'} readOnly /></label>
 
-                <label className=' px-4 bg-orange-100  flex flex-col py-4 items-start justify-center h-[4rem] rounded-xl w-full' >Seleccione maximo 3 fotos(Opcional).
+                <label className=' px-4 bg-orange-100  flex flex-col py-4 items-start justify-center h-[4rem] rounded-xl w-full text-black ' >Seleccione maximo 3 fotos(Opcional).
                     <input  className='px-4 outline-none text-black font-normal h-[3rem]  ' type="file" name="imagenes" accept="image/*" multiple onChange={handleFileChange}
                     />
                     {error && <p className='text-red-500 px-2'>{error}</p>}

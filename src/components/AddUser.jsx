@@ -1,5 +1,4 @@
 
-import dayjs from 'dayjs';
 import React, { useContext, useState } from 'react'
 import { AdminContext } from '../context/AdminContex';
 
@@ -30,7 +29,7 @@ export const AddUser = () => {
 
                 <label className='  p-2 flex flex-col py-4 items-start '> Telefono: <input required placeholder='Telefono de nuevo usuario' className='px-4 outline-none rounded-xl bg-orange-100 w-full h-[3rem] text-black font-normal' type="tel" name='telefono' /></label>
 
-                <label className=' p-2 flex flex-col py-4 items-start' > Rol: <select required  className='px-4 outline-none rounded-xl bg-orange-100 w-full h-[3rem]  text-black font-normal' type="text" name='rol'>
+                <label className=' p-2 flex flex-col py-4 items-start' > Rol: <select className='px-4 outline-none rounded-xl bg-orange-100 w-full h-[3rem]  text-black font-normal' type="text" name='rol'>
                     <option value="administrador">Administrador</option>
                     <option value="residente">Residente</option>
 

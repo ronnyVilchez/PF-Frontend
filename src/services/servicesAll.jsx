@@ -42,6 +42,12 @@ export const createUs = async (data)=> {
     return newUs.data
  }
  
+export const editeUs = async (data)=> {
+   const id = localStorage.getItem('userId')
+    const editUs = await axios.patch(`http://localhost:3000/api/user/${id}`,data)
+    return editUs.data
+ }
+ 
  export const deleteUser = async (id)=> {
     const delUser = await axios.delete(`http://localhost:3000/api/user/${id}`)
     return delUser.data

@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Auth } from "../services/AuthService";
 import { useLocation } from "wouter";
-import { createRpt, createUs, deleteReport, deleteUser, reportesAll, reportesOne, reportesUser, updateReport, updateReportResident, usersAll } from "../services/servicesAll";
+import { createRpt, createUs, deleteReport, deleteUser, editeUs, reportesAll, reportesOne, reportesUser, updateReport, updateReportResident, usersAll } from "../services/servicesAll";
 
 export const AdminContext = createContext()
 
@@ -132,6 +132,20 @@ export const AdminProvider = ({ children }) => {
         }
     })
 
+    const updatUser = useMutation({
+        mutationKey: ['updatUser'],
+        mutationFn: editeUs,
+        onSuccess: (data) => {
+            console.log(data);
+            queryClient.invalidateQueries('users')
+            setLocation('/dashboard')
+
+        },
+        onError: (err) => {
+            console.log(err);
+        }
+    })
+
     const delUser = useMutation({
         mutationKey: ['delUser'],
         mutationFn: deleteUser,
@@ -143,6 +157,7 @@ export const AdminProvider = ({ children }) => {
             console.log(err);
         }
     })
+
     return (
         <AdminContext.Provider value={{
             adminAll,
@@ -155,7 +170,8 @@ export const AdminProvider = ({ children }) => {
             reportFOne,
             updateStatus,
             delUser,
-            updateReportUs
+            updateReportUs,
+            updatUser
         }}>
             {children}
         </AdminContext.Provider>

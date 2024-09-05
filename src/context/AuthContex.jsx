@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
         onSuccess: (data) => {
             localStorage.setItem('token', data.tokem)
             localStorage.setItem('userId', data.user.userId)
-            console.log(data);
             setInfoUser(data.user)
             setLocation('/dashboard')
 
@@ -29,6 +28,8 @@ export const AuthProvider = ({ children }) => {
     function logout() {
         localStorage.removeItem('token')
         localStorage.removeItem('userId')
+        localStorage.removeItem('idIn')
+        localStorage.removeItem('idR')
         setLocation('/login')
 
     }

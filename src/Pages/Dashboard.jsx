@@ -11,6 +11,7 @@ import { Users } from '../components/Users'
 import { IncidentAll } from '../components/IncidentAll'
 import { AddUser } from '../components/AddUser'
 import { EditIncident } from '../components/EditIncident'
+import { EditUser } from '../components/EditUser'
 
 export const Dashboard = () => {
     const { infoUser } = useContext(AuthContext)
@@ -37,6 +38,7 @@ export const Dashboard = () => {
                     <Route path="/dashboard/incidentAll" component={IncidentAll} />
                     <Route path="/dashboard/create" component={AddUser} />
                     <Route path="/dashboard/edit" component={EditIncident} />
+                    <Route path="/dashboard/profile" component={EditUser} />
                 </section>
 
             </section>
