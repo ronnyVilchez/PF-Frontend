@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Auth } from "../services/AuthService";
 import { useLocation } from "wouter";
 import { createRpt, createUs, deleteReport, deleteUser, editeUs, reportesAll, reportesOne, reportesUser, updateReport, updateReportResident, usersAll } from "../services/servicesAll";
+import swal from "sweetalert";
 
 export const AdminContext = createContext()
 
@@ -69,12 +70,21 @@ export const AdminProvider = ({ children }) => {
         mutationKey: ['createReport'],
         mutationFn: createRpt,
         onSuccess: (data) => {
-            console.log(data);
+            swal({
+                title: data.message,
+                icon: "success",
+                dangerMode: true,
+            })
             setLocation('/dashboard/incident')
 
         },
         onError: (err) => {
-            console.log(err);
+            swal({
+                title: "Ups!",
+                text: err.response.data.message,
+                icon: "warning",
+                dangerMode: true,
+            })
         }
     })
 
@@ -82,11 +92,20 @@ export const AdminProvider = ({ children }) => {
         mutationKey: ['updateStatus'],
         mutationFn: updateReport,
         onSuccess: (data) => {
-            console.log(data);
+            swal({
+                title: data.message,
+                icon: "success",
+                dangerMode: true,
+            })
             queryClient.invalidateQueries('reports')
         },
         onError: (err) => {
-            console.log(err);
+            swal({
+                title: "Ups!",
+                text: err.response.data.message,
+                icon: "warning",
+                dangerMode: true,
+            })
         }
     })
 
@@ -94,13 +113,22 @@ export const AdminProvider = ({ children }) => {
         mutationKey: ['updateReport'],
         mutationFn: updateReportResident,
         onSuccess: (data) => {
-            console.log(data);
+            swal({
+                title: data.message,
+                icon: "success",
+                dangerMode: true,
+            })
             queryClient.invalidateQueries('reportUs')
             setLocation('/dashboard/incident')
 
         },
         onError: (err) => {
-            console.log(err);
+            swal({
+                title: "Ups!",
+                text: err.response.data.message,
+                icon: "warning",
+                dangerMode: true,
+            })
         }
     })
 
@@ -108,12 +136,21 @@ export const AdminProvider = ({ children }) => {
         mutationKey: ['delReport'],
         mutationFn: deleteReport,
         onSuccess: (data) => {
-            console.log(data);
+            swal({
+                title: data.message,
+                icon: "success",
+                dangerMode: true,
+            })
             queryClient.invalidateQueries('reports')
             queryClient.invalidateQueries('reportUs')
         },
         onError: (err) => {
-            console.log(err);
+            swal({
+                title: "Ups!",
+                text: err.response.data.message,
+                icon: "warning",
+                dangerMode: true,
+            })
         }
     })
 
@@ -122,13 +159,22 @@ export const AdminProvider = ({ children }) => {
         mutationKey: ['createUser'],
         mutationFn: createUs,
         onSuccess: (data) => {
-            console.log(data);
+            swal({
+                title: data.message,
+                icon: "success",
+                dangerMode: true,
+            })
             queryClient.invalidateQueries('users')
             setLocation('/dashboard/users')
 
         },
         onError: (err) => {
-            console.log(err);
+            swal({
+                title: "Ups!",
+                text: err.response.data.message,
+                icon: "warning",
+                dangerMode: true,
+            })
         }
     })
 
@@ -136,13 +182,23 @@ export const AdminProvider = ({ children }) => {
         mutationKey: ['updatUser'],
         mutationFn: editeUs,
         onSuccess: (data) => {
-            console.log(data);
+            swal({
+                title: data.message,
+                icon: "success",
+                dangerMode: true,
+            })
+
             queryClient.invalidateQueries('users')
             setLocation('/dashboard')
 
         },
         onError: (err) => {
-            console.log(err);
+            swal({
+                title: "Ups!",
+                text: err.response.data.message,
+                icon: "warning",
+                dangerMode: true,
+            })
         }
     })
 
@@ -150,11 +206,20 @@ export const AdminProvider = ({ children }) => {
         mutationKey: ['delUser'],
         mutationFn: deleteUser,
         onSuccess: (data) => {
-            console.log(data);
+            swal({
+                title: data.message,
+                icon: "success",
+                dangerMode: true,
+            })
             queryClient.invalidateQueries('users')
         },
         onError: (err) => {
-            console.log(err);
+            swal({
+                title: "Ups!",
+                text: err.response.data.message,
+                icon: "warning",
+                dangerMode: true,
+            })
         }
     })
 

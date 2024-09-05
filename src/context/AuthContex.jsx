@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { Auth } from "../services/AuthService";
 import { useLocation } from "wouter";
+import swal from "sweetalert";
 
 export const AuthContext = createContext()
 
@@ -20,7 +21,12 @@ export const AuthProvider = ({ children }) => {
 
         },
         onError: (err) => {
-            console.log(err);
+            swal({
+                title: "Ups!",
+                text: err.response.data.message,
+                icon: "warning",
+                dangerMode: true,
+              })
         }
     })
 
