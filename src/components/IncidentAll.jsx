@@ -1,10 +1,17 @@
 
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AdminContext } from '../context/AdminContex'
+import dayjs from 'dayjs';
 
 export const IncidentAll = () => {
     const { reportAll, updateStatus, delReport } = useContext(AdminContext)
     const [expandedId, setExpandedId] = useState(null);
+    const [reports, setReports] = useState([]);
+
+    useEffect(() => {
+        if (reportAll)
+            setReports(reportAll)
+    }, [reportAll])
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -13,7 +20,7 @@ export const IncidentAll = () => {
     };
 
     const handleRowClick = (id) => {
-        setExpandedId(expandedId === id ? null : id); // Toggle row
+        setExpandedId(expandedId === id ? null : id);
     };
 
     const handleUpdate = async (e, id) => {
@@ -29,14 +36,64 @@ export const IncidentAll = () => {
         await delReport.mutateAsync(id)
     }
 
+    const statusFilter = (e) => {
+
+        if (e.target.value === '') {
+            setReports(reportAll)
+        } else {
+            const filterArray = reportAll.filter((rp) => rp.status === e.target.value)
+            setReports(filterArray);
+
+        }
+        console.log(reports);
+    }
+
+    function filterDesde(e) {
+
+        const fecha = dayjs(e.target.value).format('YYYY-MM-DD')
+
+        const filterArray = reportAll.filter((rp) => dayjs(rp.date).format('YYYY-MM-DD') >= fecha)
+        //const filterArray2 = reportAll.map((rp) => console.log( dayjs(rp.date).format('YYYY-MM-DD')))
+        setReports(filterArray);
+       // console.log(`esta es la fecha - ${fecha}`);
+    }
+
+    function filterHasta(e) {
+        const fecha = dayjs(e.target.value).format('YYYY-MM-DD')
+
+        const filterArray = reportAll.filter((rp) => dayjs(rp.date).format('YYYY-MM-DD') <= fecha)
+        setReports(filterArray);
+    }
+
 
     return (
         <section className='w-full h-screen flex flex-col gap-4 '>
-            <h2 className='text-[1.3rem] text-center'>Estos son tus reportes</h2>
-            <table className="min-w-full h-screen  bg-white bg-opacity-70 border border-orange-200">
+            <section className='w-full flex flex-row items-center justify-between'>
+                <h2 className='text-[1.3rem] text-center'>Estos son tus reportes</h2>
+                <section className=' flex flex-row items-center gap-4'>
+                    <label >Filtrar por: <select className='rounded-xl outline-none text-black' type="text" onChange={statusFilter} >
+                        <option value="" >Todos</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="progreso">Progreso</option>
+                        <option value="resuelto">Resuelto</option>
+                    </select></label>
+
+                    <section className='' >
+                        <label >
+                            Desde:
+                            <input className='text-black px-1' onChange={filterDesde} type="date" />
+                        </label>
+                        <label >
+                            Hasta:
+                            <input className='text-black px-1' onChange={filterHasta} type="date" />
+                        </label>
+                    </section>
+                </section>
+            </section>
+            <table className="min-w-full h-fit  bg-white bg-opacity-70 border border-orange-200">
                 <thead>
                     <tr className="w-full bg-orange-100 border-b border-orange-200">
-                        <th className="py-2 px-4 text-center text-gray-600">Titulo</th>
+                        <th className="py-2 px-4 text-center text-gray-600">Asunto</th>
                         <th className="py-2 px-4 text-center text-gray-600">Ubicacion</th>
                         <th className="py-2 px-4 text-center text-gray-600">Tipo</th>
                         <th className="py-2 px-4 text-center text-gray-600">Estado</th>
@@ -45,18 +102,17 @@ export const IncidentAll = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {reportAll &&
-                        reportAll.map((item) => (
+                    {reports &&
+                        reports.map((item) => (
                             <React.Fragment key={item.id}>
                                 <tr
-                                    className="relative text-black border-b border-orange-200 cursor-pointer"
-
+                                    className="relative text-black border-b border-orange-200 "
                                 >
                                     <td className="py-2 px-4 text-center">{item.title}</td>
                                     <td className="py-2 px-4 text-center">{item.ubication}</td>
                                     <td className="py-2 px-4 text-center">{item.type}</td>
                                     <td className="py-2 px-4 text-center">
-                                        <select className='px-4 outline-none rounded-xl bg-orange-100 w-full h-[3rem]  text-black font-normal' type="text" name='status' defaultValue={item.status}
+                                        <select required className='px-4 outline-none rounded-xl bg-orange-100 w-full h-[3rem] cursor-pointer text-black font-normal' type="text" name='status' defaultValue={item.status}
                                             onChange={(e) => handleUpdate(e, item.id)}
                                         >
                                             <option value="pendiente">Pendiente</option>
@@ -66,7 +122,7 @@ export const IncidentAll = () => {
 
 
                                     </td>
-                                    <td className="py-2 px-4 text-center" colSpan={2} onClick={() => handleRowClick(item.id)}>
+                                    <td className="py-2 px-4 text-center cursor-pointer" colSpan={2} onClick={() => handleRowClick(item.id)}>
                                         <span className="text-orange-400 hover:underline">
                                             {(expandedId === item.id) ? ` Mostrar menos` : ` Mostrar más`}
                                         </span>

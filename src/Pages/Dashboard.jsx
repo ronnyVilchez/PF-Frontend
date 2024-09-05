@@ -10,6 +10,7 @@ import { AuthContext } from '../context/AuthContex'
 import { Users } from '../components/Users'
 import { IncidentAll } from '../components/IncidentAll'
 import { AddUser } from '../components/AddUser'
+import { EditIncident } from '../components/EditIncident'
 
 export const Dashboard = () => {
     const { infoUser } = useContext(AuthContext)
@@ -35,6 +36,7 @@ export const Dashboard = () => {
                     <Route path="/dashboard/users" component={Users} />
                     <Route path="/dashboard/incidentAll" component={IncidentAll} />
                     <Route path="/dashboard/create" component={AddUser} />
+                    <Route path="/dashboard/edit" component={EditIncident} />
                 </section>
 
             </section>

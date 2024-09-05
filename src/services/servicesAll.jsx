@@ -8,6 +8,11 @@ export const reportesAll = async ()=> {
    const report = await axios.get('http://localhost:3000/api/incident/all')
    return report.data
 }
+export const reportesOne = async ()=> {
+   const idIn = localStorage.getItem('idIn')
+   const report = await axios.get(`http://localhost:3000/api/incident/${idIn}`)
+   return report.data
+}
 export const reportesUser = async ()=> {
     const userId = localStorage.getItem('userId')
    const reportUs = await axios.get(`http://localhost:3000/api/incident/u/${userId}`)
@@ -20,6 +25,11 @@ export const createRpt = async (data)=> {
 export const updateReport = async (data)=> {
     const idR = localStorage.getItem('idR')
    const report = await axios.patch(`http://localhost:3000/api/incident/${idR}`,data)
+   return report.data
+}
+export const updateReportResident = async (data)=> {
+    const idIn = localStorage.getItem('idIn')
+   const report = await axios.patch(`http://localhost:3000/api/incident/${idIn}`,data)
    return report.data
 }
 export const deleteReport = async (id)=> {

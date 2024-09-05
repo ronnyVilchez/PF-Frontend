@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Auth } from "../services/AuthService";
 import { useLocation } from "wouter";
-import { createRpt, createUs, deleteReport, deleteUser, reportesAll, reportesUser, updateReport, usersAll } from "../services/servicesAll";
+import { createRpt, createUs, deleteReport, deleteUser, reportesAll, reportesOne, reportesUser, updateReport, updateReportResident, usersAll } from "../services/servicesAll";
 
 export const AdminContext = createContext()
 
@@ -12,6 +12,7 @@ export const AdminProvider = ({ children }) => {
     const [adminAll, setAdminAll] = useState([])
     const [reportAll, setReportAll] = useState([])
     const [reportFrUs, setReportFrUs] = useState([])
+    const [reportFOne, setReportFOne] = useState([])
     const queryClient = useQueryClient();
 
     const { data: users } = useQuery({
@@ -52,6 +53,18 @@ export const AdminProvider = ({ children }) => {
         }
     }, [reportUs])
 
+    const { data: reportOne } = useQuery({
+        queryKey: ['reportOne'],
+        queryFn: reportesOne,
+        enabled: location === '/dashboard/edit'
+    })
+
+    useEffect(() => {
+        if (reportOne) {
+            setReportFOne(reportOne)
+        }
+    }, [reportOne])
+
     const createReport = useMutation({
         mutationKey: ['createReport'],
         mutationFn: createRpt,
@@ -71,6 +84,20 @@ export const AdminProvider = ({ children }) => {
         onSuccess: (data) => {
             console.log(data);
             queryClient.invalidateQueries('reports')
+        },
+        onError: (err) => {
+            console.log(err);
+        }
+    })
+
+    const updateReportUs = useMutation({
+        mutationKey: ['updateReport'],
+        mutationFn: updateReportResident,
+        onSuccess: (data) => {
+            console.log(data);
+            queryClient.invalidateQueries('reportUs')
+            setLocation('/dashboard/incident')
+
         },
         onError: (err) => {
             console.log(err);
@@ -125,8 +152,10 @@ export const AdminProvider = ({ children }) => {
             reportFrUs,
             userAll,
             reportAll,
+            reportFOne,
             updateStatus,
-            delUser
+            delUser,
+            updateReportUs
         }}>
             {children}
         </AdminContext.Provider>
