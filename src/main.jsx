@@ -4,13 +4,17 @@ import App from './App.jsx'
 import './index.css'
 import { AuthProvider } from './context/AuthContex.jsx'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { AdminProvider } from './context/AdminContex.jsx'
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
   //  <StrictMode>
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
-      <App />
+      <AdminProvider>
+
+        <App />
+      </AdminProvider>
     </AuthProvider>
   </QueryClientProvider>
 
