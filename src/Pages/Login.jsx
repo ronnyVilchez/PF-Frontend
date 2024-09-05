@@ -13,10 +13,21 @@ export const Login = () => {
     }
 
     return (
-        <form onSubmit={handleLog}>
-            <label>Usuario: <input name='usuario' type="text" /></label>
-            <label>Contraseña: <input name='password' type="text" /></label>
-            <button type='submit' >Ingresar</button>
-        </form>
+        <main className={`flex flex-col h-screen w-full p-8 bg-[url('/images/bg-main.jpg')] bg-cover font-Noto-Sans `}>
+            <h1 className='absolute text-white font-semibold text-[3rem] text-center w-full'>
+                BIENVENIDO A LA PAGINA DE REPORTES DE <br /> "CONDOMINIOS LOS PORTALES S.A.A"</h1>
+            <section className='flex m-auto '>
+                <form onSubmit={handleLog} className='flex flex-col gap-14 border-[1px] rounded-xl p-8 bg-white bg-opacity-70'>
+                    <section className='flex flex-col gap-8 '>
+                        <label className='font-semibold w-[15rem] h-[2.5rem] flex flex-col gap-2 '>Usuario: <input className=' rounded-lg font-normal outline-none py-1 px-3' name='usuario' type="text" /></label>
+
+                        <label className='font-semibold w-[15rem] h-[2.5rem] flex flex-col gap-2 '>Contraseña:
+                            <input className=' rounded-lg font-normal outline-none py-1 px-3' name='password' type="text" /></label>
+
+                    </section>
+                    <button type='submit' className='bg-orange-400 rounded-lg h-[2.5rem] text-white font-semibold' >Ingresar</button>
+                </form>
+            </section>
+        </main>
     )
 }

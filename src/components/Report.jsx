@@ -55,7 +55,7 @@ export const Report =  () => {
                     {error && <p className='text-red-500 px-2'>{error}</p>}
                 </label>
 
-                <button className='bg-orange-400 rounded-lg h-[2.5rem] text-white font-semibold' type='submit'>Enviar Reporte</button>
+                <button className='bg-orange-400 rounded-lg h-[3rem] text-white font-semibold' type='submit'>Enviar Reporte</button>
             </form>
         </section>
     )
