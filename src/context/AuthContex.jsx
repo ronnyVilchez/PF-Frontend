@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { Auth } from "../services/AuthService";
+import { Auth, infoUs } from "../services/AuthService";
 import { useLocation } from "wouter";
 import swal from "sweetalert";
 
@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
         onSuccess: (data) => {
             localStorage.setItem('token', data.tokem)
             localStorage.setItem('userId', data.user.userId)
-            setInfoUser(data.user)
+            // setInfoUser(data.user)
             setLocation('/dashboard')
 
         },
@@ -26,9 +26,22 @@ export const AuthProvider = ({ children }) => {
                 text: err.response.data.message,
                 icon: "warning",
                 dangerMode: true,
-              })
+            })
         }
     })
+
+    const { data: Info } = useQuery({
+        queryKey: ['info'],
+        queryFn: infoUs,
+        enabled: Boolean(localStorage.getItem('token'))
+    })
+
+    useEffect(() => {
+        if (Info) {
+            setInfoUser(Info)
+        }
+    }, [Info])
+
 
 
     function logout() {
