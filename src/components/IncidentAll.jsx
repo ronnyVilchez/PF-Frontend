@@ -53,9 +53,7 @@ export const IncidentAll = () => {
         const fecha = dayjs(e.target.value).format('YYYY-MM-DD')
 
         const filterArray = reportAll.filter((rp) => dayjs(rp.date).format('YYYY-MM-DD') >= fecha)
-        //const filterArray2 = reportAll.map((rp) => console.log( dayjs(rp.date).format('YYYY-MM-DD')))
         setReports(filterArray);
-       // console.log(`esta es la fecha - ${fecha}`);
     }
 
     function filterHasta(e) {
@@ -90,6 +88,7 @@ export const IncidentAll = () => {
                     </section>
                 </section>
             </section>
+            <section className="overflow-x-auto w-full"> 
             <table className="min-w-full h-fit  bg-white bg-opacity-70 border border-orange-200">
                 <thead>
                     <tr className="w-full bg-orange-100 border-b border-orange-200">
@@ -167,6 +166,7 @@ export const IncidentAll = () => {
                         ))}
                 </tbody>
             </table>
+            </section>
         </section>
     )
 }

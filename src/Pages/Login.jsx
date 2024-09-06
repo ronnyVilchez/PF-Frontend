@@ -14,7 +14,7 @@ export const Login = () => {
 
     return (
         <main className={`flex flex-col h-screen w-full p-8 bg-[url('/images/bg-main.jpg')] bg-cover font-Noto-Sans `}>
-            <h1 className='absolute text-white font-semibold text-[3rem] text-center w-full'>
+            <h1 className=' sm:absolute text-white font-semibold text-[4.5vw] sm:text-[5vh] text-center w-full'>
                 BIENVENIDO A LA PAGINA DE REPORTES DE <br /> "CONDOMINIOS LOS PORTALES S.A.A"</h1>
             <section className='flex m-auto '>
                 <form onSubmit={handleLog} className='flex flex-col gap-14 border-[1px] rounded-xl p-8 bg-white bg-opacity-70'>

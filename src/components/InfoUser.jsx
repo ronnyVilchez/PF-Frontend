@@ -8,15 +8,15 @@ export const InfoUser = () => {
         <>
             {infoUser &&
 
-                (<section className='w-full h-fit flex flex-col text-orange-500 bg-orange-100 bg-opacity-85 p-8 gap-2 rounded-xl right-0 top-[6rem] '>
-                    <figure className='flex flex-row items-center w-full justify-evenly'>
+                (<section className='w-full h-fit flex flex-col text-orange-500 bg-orange-100 bg-opacity-85 p-4 sm:p-8 gap-2 rounded-xl right-0 top-[6rem] '>
+                    <figure className='hidden sm:flex flex-row items-center w-full justify-evenly'>
                         <img src="/images/arrowLT.svg" alt="arrowLT" width={150} />
                         <img src="/images/arrowUP.svg" alt="arrowUP" width={150} />
                         <img src="/images/arrowRGT.svg" alt="arrowRGT" width={150} />
                     </figure>
 
                    <h2 className='font-semibold text-[2rem] text-center'>Información de tú Perfil</h2>
-                    <section className='flex flex-col gap-2 px-8'>
+                    <section className='flex flex-col gap-2 px-2 sm:px-8'>
                     <h2  className='font-semibold text-[1.5rem]'>Datos Personales</h2>
 
                     <span className='text-[1.2rem]'><strong>Nombre: </strong>{infoUser.nombre}</span>

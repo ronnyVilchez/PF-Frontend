@@ -19,7 +19,7 @@ export const Dashboard = () => {
     const [location] = useLocation()
 
     return (
-        <main className={`${(location === '/dashboard') ? 'h-screen' : 'h-full'} flex flex-col  w-full p-8 gap-8 bg-[url('/images/bg-main.jpg')] bg-cover text-white font-Noto-Sans`}>
+        <main className={`${(location === '/dashboard') ? 'sm:h-screen' : 'h-full'} flex flex-col  w-full p-2 sm:p-8 gap-8 bg-[url('/images/bg-main.jpg')] bg-cover text-white font-Noto-Sans`}>
             <h2 className='text-[2.2rem] text-center font-semibold'>Bienvenido al sistema de incidencias del edificio "Los Portales"</h2>
             <section className='flex flex-col w-full gap-6 '>
                 <h2 className='text-[1.8rem] text-center'>¿Que desea hacer hoy?</h2>
@@ -30,8 +30,8 @@ export const Dashboard = () => {
                     </>
 
                 }
-                <section className='w-full py-4 px-10'>
-                <Route path="/dashboard" component={InfoUser} />
+                <section className='w-full py-4 sm:px-10'>
+                    <Route path="/dashboard" component={InfoUser} />
                     <Route path="/dashboard/report" component={Report} />
                     <Route path="/dashboard/incident" component={Incident} />
                     <Route path="/dashboard/help" component={Help} />
