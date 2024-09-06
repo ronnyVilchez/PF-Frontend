@@ -65,7 +65,7 @@ export const EditIncident = () => {
                             <section className='flex flex-row gap-8'>
                             { JSON.parse(rp.imagens).map((img,i)=>(
                                 <figure key={i}>
-                                    <img src={`http://localhost:3000/api/incident/i/${img}`} alt={`${img}`} className="w-24 h-24 object-cover rounded" />
+                                    <img src={`https://pf-backend-bdj3.onrender.com/api/incident/i/${img}`} alt={`${img}`} className="w-24 h-24 object-cover rounded" />
                                 </figure>
                             ))
 

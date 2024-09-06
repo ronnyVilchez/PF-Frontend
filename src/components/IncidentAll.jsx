@@ -136,7 +136,7 @@ export const IncidentAll = () => {
                                                 <section className="flex flex-row gap-2 justify-around">
                                                     {item.imagens &&
                                                         JSON.parse(item.imagens).map((img, index) => (
-                                                            <img key={index} src={`http://localhost:3000/api/incident/i/${img}`} alt={`${img}`} className="w-24 h-24 object-cover rounded" />
+                                                            <img key={index} src={`https://pf-backend-bdj3.onrender.com/api/incident/i/${img}`} alt={`${img}`} className="w-24 h-24 object-cover rounded" />
                                                         ))}
                                                 </section>
                                             </td>
