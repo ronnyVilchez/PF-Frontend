@@ -12,6 +12,7 @@ import { IncidentAll } from '../components/IncidentAll'
 import { AddUser } from '../components/AddUser'
 import { EditIncident } from '../components/EditIncident'
 import { EditUser } from '../components/EditUser'
+import { InfoUser } from '../components/InfoUser'
 
 export const Dashboard = () => {
     const { infoUser } = useContext(AuthContext)
@@ -30,6 +31,7 @@ export const Dashboard = () => {
 
                 }
                 <section className='w-full py-4 px-10'>
+                <Route path="/dashboard" component={InfoUser} />
                     <Route path="/dashboard/report" component={Report} />
                     <Route path="/dashboard/incident" component={Incident} />
                     <Route path="/dashboard/help" component={Help} />
