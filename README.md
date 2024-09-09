@@ -1,8 +1,15 @@
-# React + Vite
+# FRONTEND DE INCIDENCIAS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Los siguientes son los usuarios de prueba funcionales:
 
-Currently, two official plugins are available:
+*ADMIN: <br>
+usuario: juan <br>
+contraseña: juan123
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*RESIDENTE:<br>
+usuario: luisana  <br>
+contraseña: luisana123
+
+Este es el Link del frontend desplegado: https://pf-frontend-nine.vercel.app
+
+
