@@ -6,7 +6,7 @@ export const ProtectRouter = ({ children }) => {
     const token = localStorage.getItem('token')
 
 
-    if (!token) { return setLocation('/login') }
+    //if (!token) { return setLocation('/login') }
 
 
     return children
